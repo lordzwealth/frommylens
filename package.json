@@ -1,0 +1,10 @@
+{
+  "name": "frommylens",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Booking site for frommylens (Kejurojo) — static frontend + Vercel serverless functions backed by Neon Postgres.",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.0"
+  }
+}
