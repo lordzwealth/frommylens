@@ -184,9 +184,26 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .hero-foot{
   margin-top:36px;
-  display:flex; align-items:center; gap:28px; flex-wrap:wrap;
+  display:flex; flex-direction:column; gap:22px; align-items:flex-start;
 }
 .hero-sub{ max-width:38ch; opacity:.75; font-size:15px; margin:0; color:var(--ink-600); }
+.hero-ctas{ display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+
+.btn-whatsapp{
+  display:inline-flex; align-items:center; gap:9px;
+  padding:13px 24px; border-radius:30px;
+  border:1px solid var(--line-200);
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(6px);
+  color:var(--ink-900); font-weight:500; font-size:14px;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
+}
+.btn-whatsapp svg{ width:18px; height:18px; color:#25D366; flex-shrink:0; }
+.btn-whatsapp:hover{
+  transform:translateY(-2px);
+  border-color:#25D366;
+  box-shadow:0 12px 22px -14px rgba(37,211,102,.5);
+}
 
 .btn{
   display:inline-flex; align-items:center; justify-content:center;
@@ -221,6 +238,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .section-head p{ color:var(--ink-600); font-size:15px; margin:0; }
 .section-head--light h2{ color:var(--sky-900); }
 .section-head--light p{ color:var(--ink-600); opacity:.9; }
+.section-head--light .inline-link{
+  color:var(--sky-700); font-weight:600; text-decoration:underline;
+  text-underline-offset:2px;
+}
 
 /* =========================================================
    Film strip
