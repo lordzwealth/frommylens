@@ -11,16 +11,28 @@
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
-/* ---------- back to top ----------
-   #top points at the fixed header, and browsers are inconsistent
-   about anchor-scrolling to a position:fixed element (it's always
-   "in view", so the jump often silently does nothing). Handle it
-   directly instead of relying on the native anchor behaviour. */
-document.querySelectorAll('a[href="#top"]').forEach(a => {
+/* ---------- internal anchor navigation ----------
+   Two native-browser quirks make plain <a href="#x"> unreliable here:
+   1) #top targets the fixed header, and browsers are inconsistent
+      about scrolling to a position:fixed element (it's always "in
+      view", so the jump can silently do nothing).
+   2) If the URL fragment is already "#book" (say, from an earlier
+      click) and the visitor scrolls away and clicks a #book link
+      again, most browsers don't fire a navigation at all, because
+      the fragment hasn't changed — so nothing happens.
+   Handling every internal link explicitly on click sidesteps both. */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  const id = a.getAttribute('href').slice(1);
+  if (!id) return;
   a.addEventListener('click', (e) => {
     e.preventDefault();
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    history.pushState(null, '', '#top');
+    if (id === 'top') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      const target = document.getElementById(id);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    history.pushState(null, '', `#${id}`);
   });
 });
 
