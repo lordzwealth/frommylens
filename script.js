@@ -11,6 +11,19 @@
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
+/* ---------- back to top ----------
+   #top points at the fixed header, and browsers are inconsistent
+   about anchor-scrolling to a position:fixed element (it's always
+   "in view", so the jump often silently does nothing). Handle it
+   directly instead of relying on the native anchor behaviour. */
+document.querySelectorAll('a[href="#top"]').forEach(a => {
+  a.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    history.pushState(null, '', '#top');
+  });
+});
+
 /* ---------- mobile nav ---------- */
 const navToggle = document.getElementById('navToggle');
 const mobileNav = document.getElementById('mobileNav');
