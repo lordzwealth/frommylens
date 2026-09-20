@@ -262,18 +262,59 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .service-card{
   background:var(--white); color:var(--ink-900);
   border:1px solid var(--line-200);
-  border-radius:var(--radius); overflow:hidden;
+  border-radius:20px; overflow:hidden;
   display:flex; flex-direction:column;
   box-shadow:0 14px 30px -22px rgba(12,55,82,.35);
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.service-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 22px 40px -20px rgba(12,55,82,.4);
 }
 .service-card--wide{ grid-column:span 2; flex-direction:row; }
 .service-card--wide .service-media{ width:44%; flex-shrink:0; }
 .service-card:not(.service-card--wide) .service-media{ height:190px; }
-.service-media{ min-height:190px; }
+.service-media{
+  min-height:190px;
+  position:relative;
+  background:linear-gradient(155deg,
+    var(--sky-100) 0%, var(--sky-100) 54%,
+    var(--sky-300) 54%, var(--sky-300) 100%);
+}
+.service-media::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image:radial-gradient(rgba(12,55,82,.08) 1px, transparent 1px);
+  background-size:14px 14px;
+  opacity:.5;
+}
+.service-grid .service-card:nth-child(even) .service-media{
+  background:linear-gradient(155deg,
+    var(--cream-100) 0%, var(--cream-100) 54%,
+    var(--sand-400) 54%, var(--sand-400) 100%);
+}
+.media-icon{
+  position:absolute; inset:0;
+  display:flex; align-items:center; justify-content:center;
+}
+.media-icon svg{
+  width:26px; height:26px; padding:16px;
+  background:var(--white);
+  border-radius:50%;
+  color:var(--sky-700);
+  box-shadow:0 12px 22px -12px rgba(12,55,82,.5);
+}
+.service-grid .service-card:nth-child(even) .media-icon svg{ color:var(--coral-600); }
 .service-body{ padding:26px 28px; display:flex; flex-direction:column; gap:8px; justify-content:center; }
 .service-body h3{ font-size:20px; margin-bottom:4px; color:var(--sky-900); }
 .service-body p{ margin:0; font-size:14px; color:var(--ink-600); }
-.service-meta{ color:var(--coral-600) !important; font-weight:600; font-size:13px !important; margin-top:6px !important; }
+.service-meta{
+  display:inline-flex; align-self:flex-start;
+  color:var(--coral-600) !important; font-weight:600; font-size:12.5px !important;
+  margin-top:10px !important;
+  background:rgba(217,102,58,.1);
+  padding:6px 12px; border-radius:30px;
+}
 .pricing-note{ margin-top:20px; font-size:12.5px; color:var(--ink-600); font-style:italic; }
 
 @media (max-width:760px){
