@@ -48,19 +48,6 @@ mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
   navToggle.setAttribute('aria-expanded', 'false');
 }));
 
-/* ---------- filmstrip placeholders ---------- */
-const filmstrip = document.getElementById('filmstrip');
-const frameLabels = [
-  'Portrait, natural light', 'Event, candid', 'Motion still', 'Golden hour',
-  'Street moment', 'Close detail', 'Group shot', 'Behind the scenes'
-];
-frameLabels.forEach(label => {
-  const el = document.createElement('div');
-  el.className = 'frame placeholder-frame';
-  el.setAttribute('data-placeholder-note', label);
-  filmstrip.appendChild(el);
-});
-
 /* ---------- backend availability flag ----------
    Flips to false the first time a call to /api fails outright
    (e.g. the functions aren't deployed yet), so we stop pretending
